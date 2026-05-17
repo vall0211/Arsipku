@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2f3b52;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background-color: #4a5568;
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #cbd5e0;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+}
+
+.input-group input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #2563eb;
+}
+
+.footer {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.footer a {
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #cbd5e0;
+}
+
+/* Alert messages */
+.alert {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.alert-success {
+    background-color: #065f46;
+    color: #6ee7b7;
+}
+
+.alert-danger {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+}
+
+.alert-info {
+    background-color: #1e3a5f;
+    color: #93c5fd;
+}
+
+@media (max-width: 540px) {
+    .container {
+        padding: 30px 20px;
+    }
+}

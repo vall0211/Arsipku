@@ -1,0 +1,545 @@
+/* static/css/admin_dokumen.css*/
+/* static/css/admin_dokumen.css */
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* ==================== BODY ==================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #020617;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==================== SIDEBAR ==================== */
+.sidebar {
+    width: 280px;
+    background-color: #0f172a;
+    border-right: 1px solid #1e293b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-logo {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.sidebar-logo svg {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.sidebar-logo span {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.sidebar-menu {
+    flex: 1;
+    padding-top: 16px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 24px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.sidebar-menu a:hover {
+    color: #ffffff;
+    background-color: rgba(30, 41, 59, 0.5);
+}
+
+.sidebar-menu a.active {
+    background-color: rgba(30, 41, 59, 0.8);
+    border-left: 4px solid #64748b;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.sidebar-menu a svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ==================== MAIN CONTENT ==================== */
+.main-content {
+    margin-left: 280px;
+    min-height: 100vh;
+}
+
+/* ==================== HEADER ==================== */
+.top-header {
+    background-color: #0f172a;
+    border-bottom: 1px solid #1e293b;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-header h1 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1e293b;
+    border-radius: 9999px;
+    padding: 8px 16px;
+    border: 1px solid #334155;
+}
+
+.user-profile svg {
+    width: 20px;
+    height: 20px;
+    color: #cbd5e1;
+}
+
+.user-profile span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* ==================== CONTENT AREA ==================== */
+.content-area {
+    padding: 32px;
+}
+
+/* ==================== STATISTICS CARDS ==================== */
+.stat-card {
+    background-color: #0f172a;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #334155;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #60a5fa;
+}
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    color: #60a5fa;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ==================== FILTER SECTION ==================== */
+.filter-section h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.filter-form {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.filter-form input[type="text"],
+.filter-form select {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    outline: none;
+    min-width: 200px;
+}
+
+.filter-form input[type="text"]::placeholder {
+    color: #94a3b8;
+}
+
+.filter-form input[type="text"]:focus,
+.filter-form select:focus {
+    box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.filter-form select option {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+/* File Input Styling */
+.filter-form input[type="file"] {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    color: #ffffff;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    min-width: 250px;
+}
+
+/* Custom file input button */
+.filter-form input[type="file"]::file-selector-button {
+    background-color: #334155;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.filter-form input[type="file"]::file-selector-button:hover {
+    background-color: #475569;
+}
+
+.btn-cari {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
+    cursor: pointer;
+}
+
+.btn-cari:hover {
+    background-color: #1d4ed8;
+}
+
+/* ==================== TABLE ==================== */
+.table-container {
+    background-color: #0f172a;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #1e293b;
+    overflow: hidden;
+}
+
+.table-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.table-header h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.custom-table {
+    width: 100%;
+    margin: 0;
+}
+
+.custom-table thead th {
+    text-align: left;
+    padding: 16px 24px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94a3b8;
+    border-bottom: 1px solid #1e293b;
+    background-color: transparent;
+}
+
+.custom-table tbody td {
+    padding: 16px 24px;
+    font-size: 0.875rem;
+    border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+}
+
+.custom-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.custom-table tbody tr:hover {
+    background-color: rgba(30, 41, 59, 0.5);
+}
+
+.custom-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.custom-table tbody td.text-white {
+    color: #ffffff;
+}
+
+.custom-table tbody td.text-slate {
+    color: #cbd5e1;
+}
+
+/* Empty state */
+.custom-table tbody tr td[colspan] {
+    text-align: center;
+    padding: 40px 24px;
+    color: #94a3b8;
+}
+
+/* ⬇️⬇️⬇️ KOLOM AKSI - RATA TENGAH ⬇️⬇️⬇️ */
+.custom-table th:last-child,
+.custom-table td:last-child {
+    width: 260px;
+    min-width: 260px;
+    max-width: 260px;
+    white-space: nowrap;
+    text-align: center;     /* ← HEADER & ISI RATA TENGAH */
+    vertical-align: middle;
+}
+/* ==================== BUTTONS ==================== */
+
+/* ⬇️⬇️⬇️ TOMBOL AKSI GROUP - DIPERBAIKI ⬇️⬇️⬇️ */
+.btn-action-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;      /* JANGAN turun ke baris baru */
+    align-items: center;    /* Vertikal tengah */
+    justify-content: center;
+}
+
+/* Semua tombol dalam group: a, button, DAN a dengan inline style */
+.btn-action-group a,
+.btn-action-group button,
+.btn-action-group a[href*="hapus"],
+.btn-action-group a[onclick*="confirm"] {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    line-height: 1;
+}
+
+/* Tombol Lihat (Biru) */
+.btn-view {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-view:hover {
+    background-color: #1d4ed8;
+}
+
+/* Tombol Unduh (Ungu) */
+.btn-download {
+    background-color: #4f46e5;
+    color: #ffffff;
+}
+
+.btn-download:hover {
+    background-color: #4338ca;
+}
+
+/* Tombol Hapus (Merah) - class DAN inline style */
+.btn-delete,
+.btn-action-group a[style*="dc2626"],
+.btn-action-group a[href*="hapus"] {
+    background-color: #dc2626 !important;
+    color: #ffffff !important;
+}
+
+.btn-delete:hover,
+.btn-action-group a[style*="dc2626"]:hover,
+.btn-action-group a[href*="hapus"]:hover {
+    background-color: #b91c1c !important;
+}
+
+/* ==================== PAGINATION ==================== */
+.pagination-wrapper {
+    padding: 16px 24px;
+    border-top: 1px solid #1e293b;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-wrapper .page-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    transition: all 0.2s ease;
+    margin: 0 2px;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.pagination-wrapper .page-btn.active {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+.pagination-wrapper .page-btn:not(.active):hover {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+/* ==================== ALERT / FLASH ==================== */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 0.875rem;
+}
+
+.alert-success {
+    background-color: #065f46;
+    color: #6ee7b7;
+    border: 1px solid #059669;
+}
+
+.alert-danger {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+    border: 1px solid #dc2626;
+}
+
+.alert-info {
+    background-color: #1e3a5f;
+    color: #93c5fd;
+    border: 1px solid #3b82f6;
+}
+
+/* ==================== FILE VALIDATION ==================== */
+.file-input-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.file-input-wrapper small {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.file-input-wrapper .error-msg {
+    color: #fca5a5;
+    font-size: 0.75rem;
+    display: none;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 991px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .content-area {
+        padding: 16px;
+    }
+    .filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-form input,
+    .filter-form select,
+    .filter-form button {
+        width: 100%;
+    }
+}
+
+/* ==================== PAGINATION LINK ==================== */
+.pagination-wrapper a.page-btn {
+    text-decoration: none;
+    color: #94a3b8;
+}
+
+.pagination-wrapper a.page-btn:hover {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+.pagination-wrapper span.page-btn.active {
+    background-color: #1e293b;
+    color: #ffffff;
+    cursor: default;
+}
+
+.pagination-wrapper button.page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}

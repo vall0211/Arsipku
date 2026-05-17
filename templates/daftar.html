@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar - ArsipKuu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">📁 ArsipKuu</div>
+        <div class="subtitle">Buat Akun Baru</div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('daftar') }}" method="POST">
+            <div class="input-group">
+                <label>Nama Lengkap</label>
+                <input type="text" name="nama" placeholder="Masukkan nama lengkap" required>
+            </div>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Masukkan username" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Masukkan password" required>
+            </div>
+
+            <button type="submit" class="btn">DAFTAR</button>
+        </form>
+
+        <div class="footer">
+            Sudah punya akun? <a href="{{ url_for('login') }}">Login</a>
+        </div>
+
+        <div class="copyright">
+            © 2026 ArsipKuu
+        </div>
+    </div>
+
+</body>
+</html>

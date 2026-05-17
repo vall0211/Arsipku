@@ -1,0 +1,152 @@
+/*  static/css/user.css */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #2f3b52;
+    color: white;
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #1f2937;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 25px;
+}
+
+.menu {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.menu:hover {
+    background: #374151;
+}
+
+.menu.active {
+    background: #374151;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    padding: 25px;
+}
+
+/* TOPBAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile {
+    background: #374151;
+    padding: 6px 12px;
+    border-radius: 10px;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* BUTTON */
+.btn {
+    width: 150px;
+    height: 38px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.upload {
+    background: #3b82f6;
+}
+
+/* CARD */
+.cards {
+    display: flex;
+    gap: 15px;
+}
+
+.card {
+    flex: 1;
+    background: #374151;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.card h2 {
+    color: #60a5fa;
+}
+
+/* TABLE */
+.table-box {
+    margin-top: 20px;
+    background: #374151;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ffffff33;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* HEADER */
+th {
+    background: #4b5563;
+    padding: 12px;
+    border: 1px solid #ffffff33;
+}
+
+/* DATA */
+td {
+    padding: 12px;
+    border: 1px solid #ffffff22;
+}
+
+/* ZEBRA */
+tbody tr:nth-child(even) {
+    background: #2f3b52;
+}
+
+/* HOVER */
+tbody tr:hover {
+    background: #3b475f;
+}
+
+/* BUTTON TABLE */
+.btn2 {
+    width: 90px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.unduh {
+    background: #4f46e5;
+}

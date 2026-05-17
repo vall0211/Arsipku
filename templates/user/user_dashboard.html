@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArsipKuu - User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
+</head>
+<body>
+
+    <div class="d-flex min-vh-100">
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 10C6 7.79086 7.79086 6 10 6H16L20 12H30C32.2091 12 34 13.7909 34 16V30C34 32.2091 32.2091 34 30 34H10C7.79086 34 6 32.2091 6 30V10Z" fill="#2563eb"/>
+                    <path d="M16 6L20 12H30C32.2091 12 34 13.7909 34 16V18H6V10C6 7.79086 7.79086 6 10 6H16Z" fill="#3b82f6"/>
+                </svg>
+                <span>ArsipKuu</span>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="{{ url_for('user_dashboard') }}" class="active">
+                    <i class="bi bi-house-door"></i>
+                    Dashboard
+                </a>
+                <a href="{{ url_for('logout') }}">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Keluar
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content flex-fill">
+
+            <header class="top-header">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <h1>Selamat Datang, {{ nama }}</h1>
+                </div>
+                <div class="user-profile">
+                    <i class="bi bi-person-circle"></i>
+                    <span>{{ nama }}</span>
+                </div>
+            </header>
+
+            <div class="content-area">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} mb-3">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <!-- Info Total -->
+                <div class="mb-3" style="color: #94a3b8; font-size: 0.875rem;">
+                    Total: {{ total_dokumen }} dokumen
+                    {% if total_pages > 1 %}
+                        | Halaman {{ page }} dari {{ total_pages }}
+                    {% endif %}
+                </div>
+
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h2>Daftar Dokumen Saya</h2>
+                    <button class="btn-upload" data-bs-toggle="modal" data-bs-target="#modalUpload">
+                        <i class="bi bi-plus-circle"></i>
+                        Unggah Dokumen
+                    </button>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="stat-card blue">
+                            <div class="stat-icon">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-label">Dokumen Anda</p>
+                                <p class="stat-value">{{ total_dokumen }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="stat-card teal">
+                            <div class="stat-icon">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <div class="stat-info">
+                                <p class="stat-label">Dokumen Hari Ini</p>
+                                <p class="stat-value">{{ dokumen_hari_ini }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabel Dokumen -->
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Judul</th>
+                                    <th>Kategori</th>
+                                    <th>Tanggal Upload</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for doc in dokumen %}
+                                <tr>
+                                    <td class="text-white">{{ doc['judul'] }}</td>
+                                    <td class="text-slate">{{ doc['nama_kategori'] }}</td>
+                                    <td class="text-slate">{{ doc['tanggal_uplaod'] }}</td>
+                                    <td>
+    <div class="btn-action-group">
+        <a href="{{ url_for('uploaded_file', filename=doc['file']) }}" target="_blank" class="btn-view">Lihat</a>
+        <a href="{{ url_for('uploaded_file', filename=doc['file']) }}" download class="btn-download">Unduh</a>
+    </div>
+</td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="4" class="text-center text-slate">Belum ada dokumen</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ⬇️ PAGINATION REAL ⬇️ -->
+                    {% if total_pages > 1 %}
+                    <div class="pagination-wrapper">
+                        <!-- Previous -->
+                        {% if page > 1 %}
+                        <a href="{{ url_for('user_dashboard', page=page-1) }}" class="page-btn">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                        {% else %}
+                        <button class="page-btn" disabled style="opacity: 0.3; cursor: not-allowed;">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        {% endif %}
+
+                        <!-- Page Numbers -->
+                        {% for p in range(1, total_pages + 1) %}
+                            {% if p == page %}
+                            <span class="page-btn active">{{ p }}</span>
+                            {% else %}
+                            <a href="{{ url_for('user_dashboard', page=p) }}" class="page-btn">{{ p }}</a>
+                            {% endif %}
+                        {% endfor %}
+
+                        <!-- Next -->
+                        {% if page < total_pages %}
+                        <a href="{{ url_for('user_dashboard', page=page+1) }}" class="page-btn">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                        {% else %}
+                        <button class="page-btn" disabled style="opacity: 0.3; cursor: not-allowed;">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Upload -->
+    <div class="modal fade" id="modalUpload" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #1e293b; color: white; border: 1px solid #334155;">
+                <div class="modal-header" style="border-bottom: 1px solid #334155;">
+                    <h5 class="modal-title">Unggah Dokumen Baru</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="{{ url_for('user_upload_dokumen') }}" method="POST" enctype="multipart/form-data" id="formUpload">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Judul Dokumen</label>
+                            <input type="text" name="judul" class="form-control" style="background-color: #0f172a; color: white; border: 1px solid #334155;" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Kategori</label>
+                            <select name="kategori_id" class="form-select" style="background-color: #0f172a; color: white; border: 1px solid #334155;" required>
+                                <option value="">Pilih Kategori</option>
+                                {% for kat in kategori %}
+                                <option value="{{ kat['id'] }}">{{ kat['nama'] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">File (PDF, Maks 5MB)</label>
+                            <input type="file" name="file" class="form-control" 
+                                   style="background-color: #0f172a; color: white; border: 1px solid #334155;" 
+                                   accept=".pdf" required id="fileInput">
+                            <small class="text-muted mt-1 d-block" id="fileInfo">Format: PDF | Maks: 3 MB</small>
+                            <div class="text-danger mt-1" id="fileError" style="display: none;"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="border-top: 1px solid #334155;">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" id="btnUpload">Unggah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mobile toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('show');
+        });
+
+        // Validasi Client-Side
+        const fileInput = document.getElementById('fileInput');
+        const fileError = document.getElementById('fileError');
+        const fileInfo = document.getElementById('fileInfo');
+        const btnUpload = document.getElementById('btnUpload');
+        const MAX_SIZE = 5 * 1024 * 1024;
+
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            
+            if (!file) {
+                fileError.style.display = 'none';
+                btnUpload.disabled = false;
+                return;
+            }
+
+            const ext = file.name.split('.').pop().toLowerCase();
+            if (ext !== 'pdf') {
+                fileError.textContent = 'Hanya file PDF yang diperbolehkan!';
+                fileError.style.display = 'block';
+                fileInfo.style.color = '#fca5a5';
+                btnUpload.disabled = true;
+                return;
+            }
+
+            if (file.size > MAX_SIZE) {
+                const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                fileError.textContent = `Ukuran file ${sizeMB} MB melebihi batas 3 MB!`;
+                fileError.style.display = 'block';
+                fileInfo.style.color = '#fca5a5';
+                btnUpload.disabled = true;
+                return;
+            }
+
+            fileError.style.display = 'none';
+            fileInfo.style.color = '#6ee7b7';
+            fileInfo.textContent = `✓ ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+            btnUpload.disabled = false;
+        });
+
+        // Reset saat modal ditutup
+        document.getElementById('modalUpload').addEventListener('hidden.bs.modal', function() {
+            document.getElementById('formUpload').reset();
+            fileError.style.display = 'none';
+            fileInfo.style.color = '';
+            fileInfo.textContent = 'Format: PDF | Maks: 3 MB';
+            btnUpload.disabled = false;
+        });
+    </script>
+</body>
+</html>

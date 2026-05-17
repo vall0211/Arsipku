@@ -1,0 +1,17 @@
+static/
+    css/
+        admin_dokumen.css
+        login.css
+        user_dashboard.css
+        user.css
+template/
+    admin/
+        admin_dashboard.html
+        admin_dokumen.html
+    user/
+        user_dashboard.html
+    login.html
+    daftar.html
+uploads/
+app.py
+struktur.txt
