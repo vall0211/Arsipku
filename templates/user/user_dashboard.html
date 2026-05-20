@@ -123,7 +123,7 @@
                                     <td class="text-slate">{{ doc['tanggal_uplaod'] }}</td>
                                     <td>
     <div class="btn-action-group">
-        <a href="{{ url_for('uploaded_file', filename=doc['file']) }}" target="_blank" class="btn-view">Lihat</a>
+        <a href="{{ url_for('uploaded_file', filename=doc['file']) }}" class="btn btn-download"  target="_blank" class="btn-view">Lihat</a>
         <a href="{{ url_for('uploaded_file', filename=doc['file']) }}" download class="btn-download">Unduh</a>
     </div>
 </td>
